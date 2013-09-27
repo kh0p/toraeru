@@ -1,9 +1,9 @@
-#!/usr/bin/python
+#!/usr/bin/env python
+# -*- coding: utf-8 -*- 
 
 # using: https://github.com/MarioVilas/google
 
 from google import search
-import urllib.request
 import webbrowser
 import os, os.path
 import platform
@@ -47,7 +47,7 @@ def filter_search(search_list=[],file_name="lolicon.url"):
 	else:
 		f = open(file_name, "wt")
 
-	for url in search('lolicon loli pictures', stop=128):
+	for url in search('lolicon loli pictures', stop=256):
 		for x in range(0,len(common_finds)-1):
 			if common_finds[x] in url:
 				url = ""
@@ -57,6 +57,7 @@ def filter_search(search_list=[],file_name="lolicon.url"):
 		f.write(f_url) 				# saves url to file
 		search_list.append(url) 	# add a url to search list
 
-#execute
-Cache_init = Cache()
-filter_search(lolicon_search)
+def execute():
+	Cache_init = Cache()
+	#filter_search(lolicon_search)
+
