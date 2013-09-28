@@ -3,7 +3,7 @@
 import sys
 from cx_Freeze import setup, Executable
 
-build_exe_options = {"packages": ["os"], 'init_script':'Console', "excludes": ["tkinter"]}
+build_exe_options = {"packages": ["os"], "excludes": ["tkinter"]}
 
 data_files=[
 	'msvcp90.dll',

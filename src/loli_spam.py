@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*- 
+# -*- coding: utf-8 -*-
 
 # using: https://github.com/MarioVilas/google
 
@@ -24,7 +24,7 @@ class Cache(object):
 
 	def __init__(self):
 		super(Cache, self).__init__()
-		
+
 		# Check path - existance of a file
 		if not os.path.exists("cache") == True:
 			os.mkdir("cache")
@@ -60,4 +60,3 @@ def filter_search(search_list=[],file_name="lolicon.url"):
 def execute():
 	Cache_init = Cache()
 	#filter_search(lolicon_search)
-
