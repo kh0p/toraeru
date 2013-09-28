@@ -59,6 +59,7 @@ class Gelbooru(object):
 
 		def get_name():
 			# gets picture file name
+			global f_url
 			f_url = url.replace(url[0:37],"")
 			print(f_url)
 
@@ -69,6 +70,7 @@ class Gelbooru(object):
 			
 			if download == True:
 				get_name()
+				urllib.request.urlretrieve(url,cache_dir+f_url)
 		
 
 # auto get a page, and put into "gel.html" file

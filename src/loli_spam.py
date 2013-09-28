@@ -3,7 +3,7 @@
 
 # using: https://github.com/MarioVilas/google
 
-from google import search
+from google.google import search
 import webbrowser
 import os, os.path
 import platform
