@@ -35,11 +35,12 @@ class Gelbooru(object):
 		limit: 
 			limit is variable that stores maximum number of loli entries. 
 			maximum number of entries that can be loaded is 100 (limited 
-			by gelbooru API).
+			by gelbooru API). When I was testing it, there was some problem
+			with loading less than 5-10 urls.
 		"""
 
 		if by_tag_loli == True:
-			url = "http://gelbooru.com/index.php?page=dapi&s=post&q=index&limit={0}&tags=loli".format(limit)
+			url = "http://gelbooru.com/index.php?page=dapi&s=post&q=index&limit={0}&tags=loli".format(str(limit))
 
 		# gets gelbooru atom rss feed	
 		gelbooru_atom = urllib.request.urlopen(url,timeout=5)
@@ -53,15 +54,15 @@ class Gelbooru(object):
 		file_gel_atom.write(read_gel_atom)
 
 		# XML parsing 
-		tree = eltree.parse(cache_dir+'atom.xml')
+		tree = eltree.parse(cache_dir+name_gel_atom)
 		root = tree.getroot()
 
-		def get_image():
-			img_url = root.findall("./post/[@file_url]")
-			print(img_url)
+		count = 0
+		for imgurl in root.iter('post'):
+			url = imgurl.attrib.get('file_url')
+			print(url)
 
 # auto get a page, and put into "gel.html" file
 Gelbooru("http://gelbooru.com/index.php?page=post&s=list&tags=loli")
 
-Gelbooru.gel_rssatom(by_tag_loli=True)
-Gelbooru.gel_rssatom.get_image()
+maigah = Gelbooru.gel_rssatom(by_tag_loli=True,limit=10)
