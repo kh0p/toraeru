@@ -4,6 +4,7 @@
 import loli_spam
 import urllib.request
 import http.cookiejar
+import os
 import xml.etree.ElementTree as eltree
 
 loli_spam.execute()
@@ -57,21 +58,18 @@ class Gelbooru(object):
 		tree = eltree.parse(cache_dir+name_gel_atom)
 		root = tree.getroot()
 
-		def get_name():
-			# gets picture file name
-			global f_url
-			f_url = url.replace(url[0:37],"")
-			print(f_url)
-
 		# gets urls to images from post form
 		for imgurl in root.iter('post'):
 			url = imgurl.attrib.get('file_url')
 			print(url)
-			
-			if download == True:
-				get_name()
+
+			# gets picture file name
+			f_url = url.replace(url[0:37],"")
+
+			if download == True and os.path.exists(cache_dir+f_url) == False:
+				# if file is already downloaded, it will skip it 
 				urllib.request.urlretrieve(url,cache_dir+f_url)
-		
+				print(f_url)
 
 # auto get a page, and put into "gel.html" file
 Gelbooru("http://gelbooru.com/index.php?page=post&s=list&tags=loli")
