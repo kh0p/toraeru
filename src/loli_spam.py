@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*- 
 
 # using: https://github.com/MarioVilas/google
 
@@ -24,7 +24,7 @@ class Cache(object):
 
 	def __init__(self):
 		super(Cache, self).__init__()
-
+		
 		# Check path - existance of a file
 		if not os.path.exists("cache") == True:
 			os.mkdir("cache")
@@ -57,6 +57,7 @@ def filter_search(search_list=[],file_name="lolicon.url"):
 		f.write(f_url) 				# saves url to file
 		search_list.append(url) 	# add a url to search list
 
-def execute():
+def execute_spam():
 	Cache_init = Cache()
-	#filter_search(lolicon_search)
+	filter_search(lolicon_search)
+

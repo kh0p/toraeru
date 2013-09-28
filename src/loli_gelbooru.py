@@ -7,7 +7,7 @@ import http.cookiejar
 import os
 import xml.etree.ElementTree as eltree
 
-loli_spam.execute()
+loli_spam.execute_spam()
 cache_dir = "cache/"
 
 class Gelbooru(object):
@@ -71,7 +71,7 @@ class Gelbooru(object):
 				urllib.request.urlretrieve(url,cache_dir+f_url)
 				print(f_url)
 
-# auto get a page, and put into "gel.html" file
-Gelbooru("http://gelbooru.com/index.php?page=post&s=list&tags=loli")
-
-maigah = Gelbooru.gel_rssatom(by_tag_loli=True,limit=10)
+def execute_gel():
+	# auto get a page, and put into "gel.html" file
+	Gelbooru("http://gelbooru.com/index.php?page=post&s=list&tags=loli")
+	maigah = Gelbooru.gel_rssatom(by_tag_loli=True,limit=100)

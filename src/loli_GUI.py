@@ -33,12 +33,12 @@ class GetInfo(GridLayout):
         if self.limit.bind(on_text_validate=on_enter):
             a = int(outnumb)
 
-    #    self.printbutton = Button(text='Print')
-    #    self.printbutton.bind(on_press=self.callback)
-    #    self.add_widget(self.printbutton)
+    # self.printbutton = Button(text='Print')
+    # self.printbutton.bind(on_press=self.callback)
+    # self.add_widget(self.printbutton)
 
     #def callback(self,evt=None):
-    #    return self.add_widget(Label(text=self.text_input.text))
+    # return self.add_widget(Label(text=self.text_input.text))
 
 
 class AppMain(App):
