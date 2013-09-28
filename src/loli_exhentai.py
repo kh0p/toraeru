@@ -21,12 +21,3 @@ def exhentai_try():
 	file_1 = open(cache_dir+"site.html","wb")
 	file_1.write(read_ex)
 
-def gel_open(url="http://gelbooru.com/"):
-	gelbooru_loli = urllib.request.urlopen(url,timeout=5)
-	read_gel_loli = gelbooru_loli.read()
-
-	name_gel_loli = "gel.html"
-	file_gel_loli = open(cache_dir+name_gel_loli,"wb")
-	file_gel_loli.write(read_gel_loli)
-
-gel_open("http://gelbooru.com/index.php?page=post&s=list&tags=loli")
