@@ -26,7 +26,7 @@ class Gelbooru(object):
 		file_gel_loli.write(read_gel_loli)
 	
 	def gel_rssatom(url="http://gelbooru.com/index.php?page=atom", 
-					by_tag_loli = False,limit = 100):
+					by_tag_loli = False,limit = 100,download = True):
 		"""gel_rssatom:
 
 		by_tag_loli: 
@@ -57,10 +57,19 @@ class Gelbooru(object):
 		tree = eltree.parse(cache_dir+name_gel_atom)
 		root = tree.getroot()
 
-		count = 0
+		def get_name():
+			# gets picture file name
+			f_url = url.replace(url[0:37],"")
+			print(f_url)
+
+		# gets urls to images from post form
 		for imgurl in root.iter('post'):
 			url = imgurl.attrib.get('file_url')
 			print(url)
+			
+			if download == True:
+				get_name()
+		
 
 # auto get a page, and put into "gel.html" file
 Gelbooru("http://gelbooru.com/index.php?page=post&s=list&tags=loli")
