@@ -1,6 +1,0 @@
-include README.md
-include MANIFEST.in
-include setup.py
-include google.py
-include ez_setup.py
-include requirements.txt
