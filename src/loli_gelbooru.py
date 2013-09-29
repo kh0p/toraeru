@@ -71,7 +71,7 @@ class Gelbooru(object):
 				urllib.request.urlretrieve(url,cache_dir+f_url)
 				print(f_url)
 
-def execute_gel():
+def execute_gel(take_limit=100):
 	# auto get a page, and put into "gel.html" file
 	Gelbooru("http://gelbooru.com/index.php?page=post&s=list&tags=loli")
-	maigah = Gelbooru.gel_rssatom(by_tag_loli=True,limit=100)
+	maigah = Gelbooru.gel_rssatom(by_tag_loli=True,limit=take_limit)

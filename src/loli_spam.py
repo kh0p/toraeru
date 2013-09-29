@@ -38,7 +38,7 @@ class Cache(object):
 			cache_dir = "cache\\"
 			os.path.abspath(cache_dir)
 
-def filter_search(search_list=[],file_name="lolicon.url"):
+def filter_search(search_list=[],file_name="lolicon.url",keywords='lolicon loli pictures'):
 	file_name = cache_dir + file_name # adds path to cache folder
 
 	# Check path - existance of a file
@@ -47,7 +47,7 @@ def filter_search(search_list=[],file_name="lolicon.url"):
 	else:
 		f = open(file_name, "wt")
 
-	for url in search('lolicon loli pictures', stop=256):
+	for url in search(keywords, stop=256):
 		for x in range(0,len(common_finds)-1):
 			if common_finds[x] in url:
 				url = ""
@@ -57,7 +57,7 @@ def filter_search(search_list=[],file_name="lolicon.url"):
 		f.write(f_url) 				# saves url to file
 		search_list.append(url) 	# add a url to search list
 
-def execute_spam():
+def execute_spam(keywords_f_f='lolicon loli pictures'):
 	Cache_init = Cache()
-	filter_search(lolicon_search)
+	filter_search(search_list=lolicon_search,keywords=keywords_f_f)
 
