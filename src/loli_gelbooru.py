@@ -1,11 +1,19 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*- 
+"""
+	*booru general file.
+	For now, there's working Gelbooru downloader for loli content,
+	but soon I'll add danbooru, etc.
+"""
 
 import loli_spam
+import os
+import datetime
 import urllib.request
 import http.cookiejar
-import os
 import xml.etree.ElementTree as eltree
+import json
+
 
 loli_spam.execute_spam()
 cache_dir = "cache/"
@@ -71,7 +79,48 @@ class Gelbooru(object):
 				urllib.request.urlretrieve(url,cache_dir+f_url)
 				print(f_url)
 
+class Danbooru(object):
+	"""docstring for Danbooru"""
+	def __init__(self, url="http://gelbooru.com/"):
+		super(Danbooru, self).__init__()
+		self.url = url
+
+		def get_time():
+			# datetime.datetime.now() method
+			now = datetime.datetime.now()
+
+			hour = datetime.time(now.hour)
+			minute = datetime.time(now.minute)
+			second = datetime.time(now.second)
+
+			# isoformat() >> str method
+			isotime = datetime.datetime.now().isoformat()
+
+			s_iso = str(isotime)
+			s_iso[0:9] = date
+
+	def dan_jsonGET(url="http://gelbooru.com/",tag="loli",limit=100):
+		# sends request to json API on danbooru and saves in variable 'json_r'
+		json_g = urllib.request.urlopen(url+"posts.json?limit={0}?search[tags]={1}".format(str(limit), tag))
+		json_r = json_g.read()
+
+		# opens file following new filename format, and writes json data to it
+		file_dan = open(cache_dir+"danbooru-"+date+"-T-"+str(hour)+"-"+str(minute)+"-"+str(second)+".json", "wb")	
+		file_dan.write(json_r) 		
+
+		"""Filename new format: 
+		example: danbooru-2013-10-08-T-19-11-12.json
+			1st place: Object name
+			2nd place: Date in iso format
+			3rd place: (starting with "-T-") Time: hour - minute - second
+		"""
+
 def execute_gel(take_limit=100):
 	# auto get a page, and put into "gel.html" file
 	Gelbooru("http://gelbooru.com/index.php?page=post&s=list&tags=loli")
 	maigah = Gelbooru.gel_rssatom(by_tag_loli=True,limit=take_limit)
+
+def execute_dan(take_limit=100):
+	# calls dan_jsonGET -> saving 100 entries with tag "loli"
+	# to file following format in Danbooru init()
+	omgomg = Danbooru.dan_jsonGET(tag="loli",limit=take_limit)
