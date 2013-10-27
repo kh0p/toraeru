@@ -6,7 +6,7 @@
 	but soon I'll add danbooru, etc.
 """
 
-import loli_spam
+import spam
 import os
 import datetime
 import urllib.request
@@ -15,7 +15,7 @@ import xml.etree.ElementTree as eltree
 import json
 
 
-loli_spam.execute_spam()
+#loli_spam.execute_spam()
 cache_dir = "cache/"
 
 class Gelbooru(object):
@@ -114,6 +114,19 @@ class Danbooru(object):
 			2nd place: Date in iso format
 			3rd place: (starting with "-T-") Time: hour - minute - second
 		"""
+
+def exhentai_try():
+	# I need to came up with other idea
+	# problem is with deleting cookies
+	# -> getting rid of sadpanda stuff
+
+	exhentai_home = urllib.request.urlopen("http://exhentai.org/",timeout=5)
+	cj = http.cookiejar.CookieJar.clear(exhentai_home) # clears cookies of exhentai_site
+	exhentai_site = urllib.request.urlopen("http://exhentai.org/g/456745/626c55332f/",cj,timeout=5)
+	read_ex = exhentai_site.read()
+
+	file_1 = open(cache_dir+"site.html","wb")
+	file_1.write(read_ex)
 
 def execute_gel(take_limit=100):
 	# auto get a page, and put into "gel.html" file
