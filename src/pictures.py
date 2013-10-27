@@ -14,7 +14,6 @@ import http.cookiejar
 import xml.etree.ElementTree as eltree
 import json
 
-
 #loli_spam.execute_spam()
 cache_dir = "cache/"
 
@@ -103,7 +102,6 @@ class Danbooru(object):
 
 class FourChan(object):
 	"""docstring for FourChan"""
-	global jsonAPI_address
 
 	def __init__(self, board, pagenumber):
 		super(FourChan, self).__init__()
@@ -112,13 +110,19 @@ class FourChan(object):
 		self.pagenumber = pagenumber
 
 		jsonAPI_address = "https://api.4chan.org/{0}/{1}.json".format(board, pagenumber)
-	
-	def chan_jsonGET(url=jsonAPI_address):
+
+
+	def chan_jsonGET(self, url = jsonAPI_address):
 		chan_json = urllib.request.urlopen(url,timeout=5)
 		r_chan_json = chan_json.read()
 
 		f_chan_json = open(cache_dir+"4chan-"+getime()+".json", "wb")
 		f_chan_json.write(r_chan_json)
+
+		f_chan_json_indent = open(cache_dir+"4chan-"+getime()+"-i.json", "wb")
+		f_chan_json_indent.write(json.dumps(r_chan_json, sort_keys=True, indent=4))
+
+		json.loads(r_chan_json)
 
 def exhentai_try():
 	# I need to came up with other idea
@@ -142,3 +146,6 @@ def execute_dan(take_limit=100):
 	# calls dan_jsonGET -> saving 100 entries with tag "loli"
 	# to file following format in Danbooru init()
 	omgomg = Danbooru.dan_jsonGET(tag="loli",limit=take_limit)
+
+def execute_fchan():
+	getget = FourChan('g','0')
