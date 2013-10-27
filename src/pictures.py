@@ -100,7 +100,26 @@ class Danbooru(object):
 			2nd place: Date in iso format
 			3rd place: (starting with "-T-") Time: hour - minute - second
 		"""
+
+class FourChan(object):
+	"""docstring for FourChan"""
+	global jsonAPI_address
+
+	def __init__(self, board, pagenumber):
+		super(FourChan, self).__init__()
 		
+		self.board = board
+		self.pagenumber = pagenumber
+
+		jsonAPI_address = "https://api.4chan.org/{0}/{1}.json".format(board, pagenumber)
+	
+	def chan_jsonGET(url=jsonAPI_address):
+		chan_json = urllib.request.urlopen(url,timeout=5)
+		r_chan_json = chan_json.read()
+
+		f_chan_json = open(cache_dir+"4chan-"+getime()+".json", "wb")
+		f_chan_json.write(r_chan_json)
+
 def exhentai_try():
 	# I need to came up with other idea
 	# problem is with deleting cookies
