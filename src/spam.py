@@ -61,3 +61,19 @@ def execute_spam(keywords_f_f='lolicon loli pictures'):
 	Cache_init = Cache()
 	filter_search(search_list=lolicon_search,keywords=keywords_f_f)
 
+def get_time():
+	global gedate
+	# datetime.datetime.now() method
+	
+	#now = datetime.datetime.now()
+	#
+	#hour = datetime.time(now.hour)
+	#minute = datetime.time(now.minute)
+	#second = datetime.time(now.second)
+
+	# isoformat() >> str method
+	isotime = datetime.datetime.now().isoformat()
+
+	s_iso = str(isotime)
+	date = s_iso[0:9] 
+	return date

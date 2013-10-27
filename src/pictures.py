@@ -85,20 +85,6 @@ class Danbooru(object):
 		super(Danbooru, self).__init__()
 		self.url = url
 
-		def get_time():
-			# datetime.datetime.now() method
-			now = datetime.datetime.now()
-
-			hour = datetime.time(now.hour)
-			minute = datetime.time(now.minute)
-			second = datetime.time(now.second)
-
-			# isoformat() >> str method
-			isotime = datetime.datetime.now().isoformat()
-
-			s_iso = str(isotime)
-			s_iso[0:9] = date
-
 	def dan_jsonGET(url="http://gelbooru.com/",tag="loli",limit=100):
 		# sends request to json API on danbooru and saves in variable 'json_r'
 		json_g = urllib.request.urlopen(url+"posts.json?limit={0}?search[tags]={1}".format(str(limit), tag))
@@ -114,7 +100,7 @@ class Danbooru(object):
 			2nd place: Date in iso format
 			3rd place: (starting with "-T-") Time: hour - minute - second
 		"""
-
+		
 def exhentai_try():
 	# I need to came up with other idea
 	# problem is with deleting cookies
