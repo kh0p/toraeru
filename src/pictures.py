@@ -14,6 +14,8 @@ import http.cookiejar
 import xml.etree.ElementTree as eltree
 import json
 
+global jsonAPI_GET_link
+
 #loli_spam.execute_spam()
 cache_dir = "cache/"
 
@@ -111,15 +113,17 @@ class FourChan(object):
 
 		jsonAPI_address = "https://api.4chan.org/{0}/{1}.json".format(board, pagenumber)
 
+		FourChan.chan_jsonGET(jsonAPI_address)
 
-	def chan_jsonGET(self, url = jsonAPI_address):
+	def chan_jsonGET(url = ""):
+
 		chan_json = urllib.request.urlopen(url,timeout=5)
 		r_chan_json = chan_json.read()
 
-		f_chan_json = open(cache_dir+"4chan-"+getime()+".json", "wb")
+		f_chan_json = open(cache_dir+"4chan-"+spam.get_time()+".json", "wb")
 		f_chan_json.write(r_chan_json)
 
-		f_chan_json_indent = open(cache_dir+"4chan-"+getime()+"-i.json", "wb")
+		f_chan_json_indent = open(cache_dir+"4chan-"+spam.get_time()+"-i.json", "wb")
 		f_chan_json_indent.write(json.dumps(r_chan_json, sort_keys=True, indent=4))
 
 		json.loads(r_chan_json)

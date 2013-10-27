@@ -7,6 +7,7 @@ from google.google import search
 import webbrowser
 import os, os.path
 import platform
+import datetime
 import sys
 
 cache_dir = "cache/" # default
