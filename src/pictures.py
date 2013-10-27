@@ -49,6 +49,14 @@ class Gelbooru(object):
 			with loading less than 5-10 urls.
 		"""
 
+		def filetype_check(cond_i, cond_d, *ftype):
+			# cond_i - include file types
+			if cond_i == True:
+				pass
+			# cond_d - exclude file types
+			else if cond_d == True:
+				pass
+
 		if by_tag_loli == True:
 			url = "http://gelbooru.com/index.php?page=dapi&s=post&q=index&limit={0}&tags=loli".format(str(limit))
 
