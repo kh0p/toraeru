@@ -54,7 +54,7 @@ class Gelbooru(object):
 			if cond_i == True:
 				pass
 			# cond_d - exclude file types
-			else if cond_d == True:
+			elif cond_d == True:
 				pass
 
 		if by_tag_loli == True:
@@ -119,11 +119,13 @@ class FourChan(object):
 		self.board = board
 		self.pagenumber = pagenumber
 
+		global board
+
 		jsonAPI_address = "https://api.4chan.org/{0}/{1}.json".format(board, pagenumber)
 
 		FourChan.chan_jsonGET(jsonAPI_address)
 
-	def chan_jsonGET(url = ""):
+	def chan_jsonGET(url = "", download = True):
 
 		chan_json = urllib.request.urlopen(url,timeout=5)
 		r_chan_json = chan_json.read()
@@ -131,10 +133,35 @@ class FourChan(object):
 		f_chan_json = open(cache_dir+"4chan-"+spam.get_time()+".json", "wb")
 		f_chan_json.write(r_chan_json)
 
-		f_chan_json_indent = open(cache_dir+"4chan-"+spam.get_time()+"-i.json", "wb")
-		f_chan_json_indent.write(json.dumps(r_chan_json, sort_keys=True, indent=4))
+		#f_chan_json_indent = open(cache_dir+"4chan-"+spam.get_time()+"-i.json", "wb")
+		#d_chan_json_indent = json.dumps(r_chan_json, sort_keys=True, indent=2)
+		#f_chan_json_indent.write(d_chan_json_indent)
 
-		json.loads(r_chan_json)
+		#json.loads(r_chan_json)
+
+		# Trying to iter by force
+		fchansrc = "images.4chan.org/{0}/src/".format(board)
+		img_tim = [] # Lists of image tim 
+		img_ext = [] # and file type
+
+
+		while True:
+			i = 0
+			for tim in r_chan_json.iter("tim"):
+				img_tim.append(img_tim)
+		
+			for ext in r_chan_json.iter("ext"):
+				img_ext.append(img_ext)	
+		
+			for i in range(len(img_tim)):
+				img_a = str(img_tim[i])+'.'+img_ext[i]
+				img_fchansrc = fchansrc + img_a
+				i += 1
+
+		if download == True and os.path.exists(cache_dir+img_a) == False:
+			# if file is already downloaded, it will skip it 
+			urllib.request.urlretrieve(img_fchansrc,cache_dir+img_a)
+			print(img_a)
 
 def exhentai_try():
 	# I need to came up with other idea
