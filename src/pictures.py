@@ -4,6 +4,9 @@
 	*booru general file.
 	For now, there's working Gelbooru downloader for loli content,
 	but soon I'll add danbooru, etc.
+
+	New update:
+	Downloading pictures from 4chan.
 """
 
 import spam
@@ -147,10 +150,10 @@ class FourChan(object):
 
 		while True:
 			i = 0
-			for tim in r_chan_json.iter("tim"):
+			for tim in f_chan_json.iter("tim"):
 				img_tim.append(img_tim)
 		
-			for ext in r_chan_json.iter("ext"):
+			for ext in f_chan_json.iter("ext"):
 				img_ext.append(img_ext)	
 		
 			for i in range(len(img_tim)):
